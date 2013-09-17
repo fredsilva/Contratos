@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-#from core.views import ContratosList
+from core.views import CargoList
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -10,7 +10,7 @@ urlpatterns = patterns('',
 	#url(r'^contratos/$', ContratosList, name='contratoList'),
 	url(r'^novo-contrato/$', 'core.views.addContrato', name='addContrato'),
 	url(r'^contratos/$', 'core.views.contratos', name='contratos'),
-	url(r'^cargos/$', 'core.views.cargos', name='cargos'),	
+	url(r'^cargos/$', CargoList.as_view(), name='cargos'),	
     #url(r'^confirma/$', 'core.views.confirma', name='confirma'),      
 	url(r'^novo-cargo/$', 'core.views.addCargo', name='addCargo'),	
     # Examples:

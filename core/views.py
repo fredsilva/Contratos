@@ -3,7 +3,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views import generic
 from datetime import date
-from models import Contrato
+from models import Contrato, Cargo
 from forms import ContratoForm, CargoForm
 
 ANO_ATUAL = date.today().year
@@ -31,22 +31,28 @@ def rodape(request):
 ''' Views de cadastros '''
 # ==============================================================================
 def addContrato(request):	
+	''' Cadastra novo contrato '''
+
 	context = {'pagina': 'Novo Contrato', 'breadcrumb': ['Novo-Contrato']}	
 	if request.method == 'POST':
-		form['form'] = form = ContratoForm(request.POST)
+		context['form'] = form = ContratoForm(request.POST)
 		if form.is_valid():
+			context['mensagem'] = 'Contrato cadastrado com sucesso!'			
 			contrato = form.save()
+			return render(request, 'confirma.html', context)
 	else:
 		context['form'] = form = ContratoForm()
 	return render(request, 'addContrato.html', context)
 
 def addCargo(request):
+	''' Cadastra novo cargo '''
+
 	context = {'pagina': 'Novo Cargo', 'breadcrumb': ['Novo-Cargo']}
 	if request.method == 'POST':
 		context['form'] = form = CargoForm(request.POST)
 		if form.is_valid():
 			cargo = form.save()
-			context = {'mensagem': 'Cargo cadastrado com sucesso!', 'breadcrumb': ['Confirmação']}
+			context['mensagem'] = 'Cargo cadastrado com sucesso!'
 			return render(request,'confirma.html', context)
 			#return redirect('/confirma/')
 	else:	
@@ -58,8 +64,12 @@ def addCargo(request):
 
 ''' Generic Views '''
 # ==============================================================================
-class ContratosList(generic.ListView):
-	template_name = 'contratos.html'
+class CargoList(generic.ListView):
+	''' View para listar todos os cargos cadastrados '''
 
-	def get_queryset(self):
-		return Contrato.objects.all()
+	template_name = 'cargos.html'	
+	context_object_name = 'cargos'
+	paginate_by = 2
+
+	def get_queryset(self):		
+		return Cargo.objects.all()
