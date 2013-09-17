@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block search %}
+<li class="pull-right search-wrap">
+    <form class="hidden-phone" action="" method="get">
+        <div class="search-input-area">
+            <input id=" " class="search-query" type="text" placeholder="Consultar" name="search">
+            <i class="icon-search"></i>
+        </div>
+    </form>
+</li>
+{% endblock %}
+{% block content %}
+    <div class="row_fluid">
+        <div class="span12">
+            <!-- BEGIN EXAMPLE TABLE widget-->
+                    <div class="widget">
+                        <div class="widget-title">
+                            <h4><i class="icon-reorder"></i>Cargos</h4>
+                            <span class="tools">
+                                <a href="javascript:;" class="icon-chevron-down"></a>
+                                <a href="javascript:;" class="icon-remove"></a>
+                            </span>
+                        </div>
+                        <div class="widget-body">
+                            <table class="table table-striped table-bordered" id="sample_1">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th class="hidden-phone">Cargo</th>
+                                    <th class="hidden-phone"></th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for cargo in cargos %}
+                                <tr class="odd gradeX">
+                                    <td>{{ cargo.id }}</td>
+                                    <td>{{ cargo.nome }}</td>
+                                    <td><a href="#" class="btn mini purple" title="Visualizar"><i class="icon-search"></i></a>&nbsp;<a href="#" class="btn mini purple" title="Alterar"><i class="icon-edit"></i></a>&nbsp;<a href="#" class="btn mini purple" title="Excluir"><i class="icon-remove"></i></a></td>
+
+                                </tr>
+                                {% endfor %}
+                                </tbody>
+                        </table>
+                        </div>
+                    </div>
+                    <!-- END EXAMPLE TABLE widget-->
+        </div>
+    </div>
+{% endblock %}

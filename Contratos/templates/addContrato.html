@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row_fluid">
+        <div class="span12">            
+                    <div class="widget">
+                        <div class="widget-title">
+                            <h4><i class="icon-reorder"></i>Novo Contrato</h4>
+                            <span class="tools">
+                                <a href="javascript:;" class="icon-chevron-down"></a>
+                                <a href="javascript:;" class="icon-remove"></a>
+                            </span>
+                        </div>
+                        <div class="widget-body">
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <input type="submit" value="Cadastrar" class="btn btn-success">
+                        </form>
+                        
+                        </div>
+                    </div>
+                    <!-- END EXAMPLE TABLE widget-->
+        </div>
+    </div>
+{% endblock %}
